@@ -95,15 +95,7 @@ Before running Terraform, you must authenticate with your AWS account.
 
 ## Step 3: Final Configuration
 
-### 1. Set Telegram Webhook
-Terraform will output a `telegram_bot_webhook_url`. Run this command to connect your bot to the Lambda function:
-
-```bash
-# Replace with your actual values
-curl -F "url=<YOUR_WEBHOOK_URL>" https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook
-```
-
-### 2. Configure GitHub Secrets
+### 1. Configure GitHub Secrets
 Go to your GitHub Repository > Settings > Secrets and variables > Actions. Add the following secrets (values are in Terraform outputs):
 *   `AWS_ROLE_ARN`: Value of `github_role_arn`.
 *   `AWS_S3_BUCKET`: Value of `s3_bucket_name`.

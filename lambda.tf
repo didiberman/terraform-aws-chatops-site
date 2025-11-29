@@ -53,3 +53,14 @@ resource "aws_lambda_function_url" "telegram_bot_url" {
 output "telegram_bot_function_url" {
   value = aws_lambda_function_url.telegram_bot_url.function_url
 }
+
+resource "null_resource" "set_telegram_webhook" {
+  triggers = {
+    function_url = aws_lambda_function_url.telegram_bot_url.function_url
+    bot_token    = var.telegram_bot_token
+  }
+
+  provisioner "local-exec" {
+    command = "curl -F 'url=${aws_lambda_function_url.telegram_bot_url.function_url}' https://api.telegram.org/bot${var.telegram_bot_token}/setWebhook"
+  }
+}
