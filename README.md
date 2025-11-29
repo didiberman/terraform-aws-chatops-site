@@ -57,6 +57,7 @@ You can use powerful AI website builders like **Bolt.new** or **Lovable.dev** to
 3.  **Fill in** your domain, tokens, and username.
 4.  **Run** `terraform apply`.
 5.  **Set** the Telegram Webhook.
+6.  **Add** the [Deployment Workflow](docs/WEBSITE_WORKFLOW.md) to your website repo.
 
 👉 **[Read the Full Setup Guide](docs/SETUP.md)**
 

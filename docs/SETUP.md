@@ -7,7 +7,7 @@ Follow these steps to deploy your own ChatOps website platform.
 1.  **AWS Account**: You need an active AWS account.
 2.  **Terraform**: Installed on your machine ([Install Guide](https://developer.hashicorp.com/terraform/downloads)).
 3.  **Domain Name**: You must own a domain name (e.g., `example.com`).
-4.  **GitHub Repository**: A repository containing your website code and a GitHub Actions workflow.
+4.  **GitHub Repository**: A repository containing your website code. You must add the **[Deployment Workflow](WEBSITE_WORKFLOW.md)** to this repo.
 
 ## Step 1: Configure Terraform
 
