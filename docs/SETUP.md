@@ -20,6 +20,32 @@ Before running Terraform, you must authenticate with your AWS account.
     ```
 3.  **Permissions**: Ensure your user has **AdministratorAccess**.
     *   *Why?* This project creates a wide range of resources (IAM Roles, CloudFront Distributions, S3 Buckets, Lambda Functions, Route 53 Zones). It is easiest to run this with Admin privileges.
+    *   *Alternative (Least Privilege)*: If you prefer to restrict access, create a custom policy with the following permissions. Note that Terraform requires broad access to *create* and *manage* these resources.
+
+    <details>
+    <summary>Click to view Least Privilege Policy JSON</summary>
+
+    ```json
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:*",
+                    "cloudfront:*",
+                    "route53:*",
+                    "acm:*",
+                    "lambda:*",
+                    "iam:*",
+                    "sts:GetCallerIdentity"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+    ```
+    </details>
 
 ## Step 1: Configure Terraform
 
