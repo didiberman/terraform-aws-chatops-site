@@ -24,6 +24,15 @@ Even though it's cheap, it's **enterprise-grade**.
 -   **Global Speed**: Your site is distributed worldwide via a Content Delivery Network (CDN). A user in Tokyo loads your site as fast as a user in New York.
 -   **Secure**: It uses banking-grade security standards (OIDC, HTTPS) without you needing to configure them.
 
+### 4. AI-Ready (Bolt.new / Lovable.dev) 🤖
+You can use powerful AI website builders like **Bolt.new** or **Lovable.dev** to create your site.
+-   **The Problem**: These tools are amazing for building, but they often charge you monthly fees to *host* the site with them.
+-   **The Solution**:
+    1.  Build your site with AI.
+    2.  Export the code to your GitHub repository.
+    3.  Text your Telegram bot to deploy.
+-   **The Result**: You get the power of AI creation without the recurring hosting fees. You own the code, and you host it for free on AWS.
+
 ---
 
 ## How It Works (Simplified)
