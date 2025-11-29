@@ -65,30 +65,37 @@ Before running Terraform, you must authenticate with your AWS account.
     *   `telegram_username`: **Your** Telegram username (without `@`). This is who the bot will listen to.
     *   `github_token`: A Personal Access Token (Classic) with `repo` scope.
 
-## Step 2: Deploy Infrastructure
+## Step 2: Deploy Infrastructure (Read Carefully!) ⚠️
 
 1.  Initialize Terraform:
     ```bash
     terraform init
     ```
-2.  Review the plan:
-    ```bash
-    terraform plan
-    ```
-3.  Apply the configuration:
+2.  Apply the configuration:
     ```bash
     terraform apply
     ```
     Type `yes` to confirm.
 
+3.  **The "Hang" (Important!)**:
+    Terraform will create the Hosted Zone and then **pause** at a step that looks like this:
+    `aws_acm_certificate_validation.cert: Still creating... [10s elapsed]`
+
+    **THIS IS NORMAL.** It is waiting for you to update your domain's nameservers.
+
+    **While Terraform is still running (do not cancel it):**
+    1.  Open the [AWS Console (Route 53)](https://console.aws.amazon.com/route53/v2/hostedzones).
+    2.  Click on your domain name (Hosted Zone).
+    3.  Look for the `NS` record type.
+    4.  Copy the 4 values listed there (e.g., `ns-123.awsdns-45.com`).
+    5.  Go to your **Domain Registrar** (GoDaddy, Namecheap, etc.).
+    6.  Update your domain's **Custom DNS / Nameservers** to these 4 values.
+
+    Once you update them, wait a few minutes. Terraform will detect the change, validate the certificate, and finish the deployment automatically.
+
 ## Step 3: Final Configuration
 
-### 1. Update Nameservers
-Terraform will output a list of `nameservers` (e.g., `ns-123.awsdns-45.com`).
-*   Go to your Domain Registrar (GoDaddy, Namecheap, etc.).
-*   Update the Custom DNS / Nameservers to these 4 values.
-
-### 2. Set Telegram Webhook
+### 1. Set Telegram Webhook
 Terraform will output a `telegram_bot_webhook_url`. Run this command to connect your bot to the Lambda function:
 
 ```bash
@@ -96,7 +103,7 @@ Terraform will output a `telegram_bot_webhook_url`. Run this command to connect 
 curl -F "url=<YOUR_WEBHOOK_URL>" https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook
 ```
 
-### 3. Configure GitHub Secrets
+### 2. Configure GitHub Secrets
 Go to your GitHub Repository > Settings > Secrets and variables > Actions. Add the following secrets (values are in Terraform outputs):
 *   `AWS_ROLE_ARN`: Value of `github_role_arn`.
 *   `AWS_S3_BUCKET`: Value of `s3_bucket_name`.
