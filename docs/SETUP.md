@@ -9,6 +9,18 @@ Follow these steps to deploy your own ChatOps website platform.
 3.  **Domain Name**: You must own a domain name (e.g., `example.com`).
 4.  **GitHub Repository**: A repository containing your website code. You must add the **[Deployment Workflow](WEBSITE_WORKFLOW.md)** to this repo.
 
+## Step 0: Authenticate with AWS 🔑
+
+Before running Terraform, you must authenticate with your AWS account.
+
+1.  **Install AWS CLI**: If you haven't already, [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+2.  **Configure Credentials**: Run the following command and enter your Access Key ID and Secret Access Key:
+    ```bash
+    aws configure
+    ```
+3.  **Permissions**: Ensure your user has **AdministratorAccess**.
+    *   *Why?* This project creates a wide range of resources (IAM Roles, CloudFront Distributions, S3 Buckets, Lambda Functions, Route 53 Zones). It is easiest to run this with Admin privileges.
+
 ## Step 1: Configure Terraform
 
 1.  Navigate to the project directory:
