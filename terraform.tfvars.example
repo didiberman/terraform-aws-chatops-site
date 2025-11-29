@@ -1,0 +1,11 @@
+# Domain Configuration
+domain_name = "example.com"
+aws_region  = "us-east-1"
+
+# GitHub Configuration
+github_repo  = "your-username/your-repo"
+github_token = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# Telegram Configuration
+telegram_bot_token = "123456789:ABCdefGHIjklMNOpqrsTUVwxyz"
+telegram_username  = "your_telegram_username"
